@@ -24,5 +24,6 @@ class Conf:
         except:
             return False
         return True
-
+    def get_field(self):
+        pass
 

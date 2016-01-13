@@ -3,18 +3,16 @@
 #Conf 类测试
 import sys
 sys.path.append("..")
-import conf
+from conf import Conf
 import sys,os
+import ConfigParser
 
-conf = conf.Conf("../conf/diffPy.conf")
-tp1 = 'offline_env', 'online_env', 'host', 'qps'
-tp2 = 'is_from_online', 'machine', 'log_path', 'filters'
-for ele in tp1:
-    print conf.get('diff_args', ele) 
-for ele in tp2:
-    if ele == 'filters':
-        strlist = conf.get('dict', ele).split(',')
-        for s in strlist:
-            print s.strip()
-    else:
-        print conf.get('dict', ele) 
+#global_conf = Conf("../conf/diffPy.conf")
+cf = ConfigParser.ConfigParser()  
+cf.read("../conf/diffPy.conf") 
+sections = cf.sections()
+#print 'sections: ', sections
+o = cf.options("diff_args") 
+#print 'options:', o
+v = cf.items("diff_args")  
+print  v 
